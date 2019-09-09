@@ -2,7 +2,7 @@
 int Account::NextAccountID = 0;
 Account::Account(const int customerID) {
 	// TODO implement
-	this->CustomerID= customerID;
+	this->CustomerID = customerID;
 	this->AccountID = Account::NextAccountID++;
 }
 
@@ -21,7 +21,7 @@ Money Account::getBalance() const {
 	//Money m(-1,-1);
 	return this->Balance;
 }
-bool Account::amountValid(Money amount) const {
+bool Account::amountValid(Money amount) {
 	if (amount.asCents() >= 0) {
 		return true;
 	}

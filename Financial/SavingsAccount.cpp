@@ -12,33 +12,35 @@ bool SavingsAccount::withdrawMoney(Money amount) {
 	// TODO implement
 	Money Demerit(2,0);
 	Money None(0,0);
-	bool valid =  amountValid(amount);
-	if (valid) {
+	if (amountValid(amount)) {
+
 			this->Balance.subtract(amount);
+			this->BonusVal.subtract(Demerit);
 
-			if (!(amountValid(Balance))) {
-				this->Balance = None;
-			}
+			if (this->Balance.getCents() < 0 ) {
+					this->Balance = None;
+				}
 
-			if ((this->BonusVal.getDollars) > Demerit.getDollars()){
-				this->BonusVal.subtract(Demerit);
-			}
+			if (this->BonusVal.getCents() < 0) {
+					this->BonusVal = None;
+				}
+			return true;
+	}
 
-			else if ((this->BonusVal.getDollars) < Demerit.getDollars()) {
-				this->BonusVal = None;
-			}
-		}
-	return valid;
+	else {
+		return false;
+	}
 }
 
 bool SavingsAccount::depositMoney(Money amount) {
 	// TODO implement
 	bool valid =  amountValid(amount);
+
 	if (valid) {
 		Money bonus = getBonusValue();
 
 			if (isSecond) {
-				amount  = amount.add(bonus);
+				amount.add(bonus);
 				isSecond = false;
 			}
 			else {

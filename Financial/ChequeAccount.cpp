@@ -1,5 +1,8 @@
 #include "ChequeAccount.hpp"
 //TODO Implement ChequeAccount class
+
+Money ChequeAccount::TransactionsFee = Money(1,0);
+Money ChequeAccount::limit = Money(3000,0);
 ChequeAccount::ChequeAccount(const int customerID) : Account(customerID) {
 	// TODO implement
 
@@ -7,7 +10,7 @@ ChequeAccount::ChequeAccount(const int customerID) : Account(customerID) {
 
 bool ChequeAccount::withdrawMoney(Money amount) {
 	// TODO implement
-	amount = amount.add(TransactionsFee);
+	amount.add(TransactionsFee);
 	bool valid = amountValid(amount);
 
 	if (valid) {
@@ -22,8 +25,8 @@ bool ChequeAccount::withdrawMoney(Money amount) {
 
 bool ChequeAccount::depositMoney(Money amount) {
 	// TODO implement
-	bool valid = amountValid(amount)
-	if (amount.getDollars <= limit.getDollars) {
+	bool valid = amountValid(amount);
+	if (amount.getDollars() <= limit.getDollars()) {
 		if (valid) {
 			this->Balance.add(amount);
 			return true;
