@@ -1,29 +1,40 @@
 #include "SavingsAccount.hpp"
 //TODO Implement the SavingsAccount class
 
-SavingsAccount::SavingsAccount(const int customerID) : Account(-1) {
+SavingsAccount::SavingsAccount(const int customerID) : Account(customerID) {
 	// TODO implement
+	Money Bonus(10,0);
+	this->isSecond = false;
+	this->BonusVal = Bonus;
 }
 
 bool SavingsAccount::withdrawMoney(Money amount) {
 	// TODO implement
 	Money Demerit(2,0);
-	if (amountValid(amount)) {
+	Money None(0,0);
+	bool valid =  amountValid(amount);
+	if (valid) {
 			this->Balance.subtract(amount);
-			if (this->BonusVal.getDollars >= 0){
+
+			if (!(amountValid(Balance))) {
+				this->Balance = None;
+			}
+
+			if ((this->BonusVal.getDollars) > Demerit.getDollars()){
 				this->BonusVal.subtract(Demerit);
 			}
-			else ()
-		}
 
-	else {
-		return false;
-	}
+			else if ((this->BonusVal.getDollars) < Demerit.getDollars()) {
+				this->BonusVal = None;
+			}
+		}
+	return valid;
 }
 
 bool SavingsAccount::depositMoney(Money amount) {
 	// TODO implement
-	if (amountValid(amount)) {
+	bool valid =  amountValid(amount);
+	if (valid) {
 		Money bonus = getBonusValue();
 
 			if (isSecond) {
@@ -33,20 +44,14 @@ bool SavingsAccount::depositMoney(Money amount) {
 			else {
 				isSecond = true;
 			}
-
 		this->Balance.add(amount);
-		return true;
 		}
-
-	else {
-		return false;
-	}
+		return valid;
 }
 
 Money SavingsAccount::getBonusValue() const {
 	// TODO implement
-	Money m;
-	return m;
+	return this->BonusVal;
 }
 
 SavingsAccount::~SavingsAccount() {

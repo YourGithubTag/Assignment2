@@ -12,7 +12,10 @@ bool CreditAccount::withdrawMoney(Money amount) {
 
 bool CreditAccount::depositMoney(Money amount) {
 	// TODO implement
-	return false;
+	bool valid =  amountValid(amount);
+	if (valid) {
+		this->Balance.subtract(amount);
+	}
 }
 
 CreditAccount::~CreditAccount() {

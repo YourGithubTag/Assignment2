@@ -7,7 +7,7 @@ private:
 	static int NextAccountID;
 	int CustomerID;
 	int AccountID;
-	Money Balance;
+	Money Balance = Money();
 	Account& operator=(const Account &other);
 	Account(const Account &other);
 public:
