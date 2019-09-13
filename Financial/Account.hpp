@@ -15,7 +15,8 @@ public:
 	Account(const int customerID);
 	virtual bool withdrawMoney(Money amount) = 0;
 	virtual bool depositMoney(Money amount) = 0;
-	static bool amountValid(Money amount);
+	virtual bool amountValid(Money amount, bool isWithdraw) = 0;
+	bool aboveZero(Money amount);
 	int getCustomerID() const;
 	int getAccountID() const;
 	Money getBalance() const;

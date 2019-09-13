@@ -9,8 +9,7 @@ CreditAccount::CreditAccount(const int customerID) : Account(customerID) {
 
 bool CreditAccount::withdrawMoney(Money amount) {
 	// TODO implement
-	bool valid =  amountValid(amount);
-		if (valid) {
+		if (amountValid(amount, true)) {
 			this->Balance.subtract(amount);
 			return true;
 		}
@@ -19,10 +18,26 @@ bool CreditAccount::withdrawMoney(Money amount) {
 
 bool CreditAccount::depositMoney(Money amount) {
 	// TODO implement
-	bool valid =  amountValid(amount);
-	if (valid && ((this->Balance.asCents() + amount.asCents()) <= limit.asCents() )) {
+	if (amountValid(amount,false)) {
 		this->Balance.add(amount);
 		return true;
+	}
+	return false;
+}
+
+bool CreditAccount::amountValid(Money amount , bool isWithdraw) {
+	if ( this->aboveZero(amount) ) {
+		if (!isWithdraw) {
+			if ((this->Balance.asCents() + amount.asCents()) <= limit.asCents()) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else if (isWithdraw){
+			return true;
+		}
 	}
 	return false;
 }

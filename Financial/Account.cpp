@@ -21,7 +21,8 @@ Money Account::getBalance() const {
 	//Money m(-1,-1);
 	return this->Balance;
 }
-bool Account::amountValid(Money amount) {
+
+bool Account::aboveZero(Money amount) {
 	if (amount.asCents() >= 0) {
 		return true;
 	}

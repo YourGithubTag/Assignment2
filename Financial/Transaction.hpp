@@ -14,11 +14,14 @@ enum TransactionState {
 class Transaction {
 	//TODO Implement members as needed
 private:
-	int TransID;
 	static int NextTransactionID;
+	int TransID;
+	TransactionState state;
+	Money TransAmount;
+	Account* FromAccount;
+	Account* ToAccount;
 	Transaction& operator=(const Transaction &other);
     Transaction(const Transaction &other);
-
 public:
 	Transaction(Account* fromAccount, Account* toAccount, Money amount);
 	bool performTransaction();

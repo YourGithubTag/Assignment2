@@ -14,6 +14,7 @@ public:
 	SavingsAccount(const int customerID);
 	bool withdrawMoney(Money amount);
 	bool depositMoney(Money amount);
+	virtual bool amountValid(Money amount, bool isWithdraw);
 	Money getBonusValue() const;
 	virtual ~SavingsAccount();
 };
