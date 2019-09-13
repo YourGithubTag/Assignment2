@@ -1,8 +1,11 @@
 #include "Transaction.hpp"
 #include <string>
 
+int Transaction::NextTransactionID = 0;
+
 Transaction::Transaction(Account* fromAccount, Account* toAccount, Money amount) {
 	//TODO Implement
+	this->TransID = Transaction::NextTransactionID++;
 }
 
 bool Transaction::performTransaction(){

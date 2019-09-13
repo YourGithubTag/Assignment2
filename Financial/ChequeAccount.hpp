@@ -6,7 +6,8 @@
 class ChequeAccount : public Account {
 //TODO Implement members as needed
 private:
-	static Money TransactionsFee;
+	Money TransactionsFee;
+	Money* TPointer;
 	static Money limit;
 	ChequeAccount& operator=(const ChequeAccount &other);
     ChequeAccount(const ChequeAccount &other);

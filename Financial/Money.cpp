@@ -2,6 +2,7 @@
 #include "Money.hpp"
 
 Money::Money() : totalCents(0) {
+
 }
 
 Money::Money(int dollars, int cents) {

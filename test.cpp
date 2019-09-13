@@ -475,6 +475,7 @@ TestResult testFailedChequeAccountWithdraw() {
 	ASSERT(jamesCheque->withdrawMoney(Money(5000,0)) == false);
 	ASSERT(jamesCheque->getBalance().asCents()==50000);
 	ASSERT(jamesCheque->getTransactionFee() != 0);
+	cout << jamesCheque->getTransactionFee()->asCents() << endl;
 	ASSERT(jamesCheque->getTransactionFee()->asCents() == 100);
 
 	delete james;
@@ -536,6 +537,7 @@ TestResult testSuccessfulCreditAccountDeposit() {
 	ASSERT(billieCredit->getBalance().asCents()==0);
 
 	ASSERT(billieCredit->depositMoney(Money(500,0)) == true);
+	cout << billieCredit->getBalance().asCents() << endl;
 	ASSERT(billieCredit->getBalance().asCents()==50000);
 
 	delete billie;

@@ -14,6 +14,8 @@ enum TransactionState {
 class Transaction {
 	//TODO Implement members as needed
 private:
+	int TransID;
+	static int NextTransactionID;
 	Transaction& operator=(const Transaction &other);
     Transaction(const Transaction &other);
 

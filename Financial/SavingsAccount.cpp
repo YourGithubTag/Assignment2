@@ -13,11 +13,11 @@ bool SavingsAccount::withdrawMoney(Money amount) {
 	Money Demerit(2,0);
 	Money None(0,0);
 
-			if (amountValid(amount) && (this->Balance.getCents() >= amount.getCents() )) {
+			if (amountValid(amount) && (this->Balance.asCents() >= amount.asCents() )) {
 
 				this->Balance.subtract(amount);
 
-					if (this->BonusVal.getCents() < Demerit.getCents()) {
+					if (this->BonusVal.asCents() < Demerit.asCents()) {
 									this->BonusVal = None;
 								}
 					else {

@@ -1,10 +1,12 @@
 #include "ChequeAccount.hpp"
 //TODO Implement ChequeAccount class
 
-Money ChequeAccount::TransactionsFee = Money(1,0);
+
 Money ChequeAccount::limit = Money(3000,0);
 ChequeAccount::ChequeAccount(const int customerID) : Account(customerID) {
 	// TODO implement
+	this->TransactionsFee = Money(1,0);
+	this->TPointer = &TransactionsFee;
 
 }
 
@@ -13,31 +15,32 @@ bool ChequeAccount::withdrawMoney(Money amount) {
 	amount.add(TransactionsFee);
 	bool valid = amountValid(amount);
 
-	if (valid) {
+	if ( (this->Balance.asCents() >= amount.asCents() ) && (valid) ) {
 		this->Balance.subtract(amount);
-
-		if (!(amountValid(Balance))) {
-			this->Balance = Money(0,0);
-		}
+		this->TransactionsFee.add(Money(1,0));
+		return true;
 	}
-	return valid;
+	else {
+		return false;
+	}
 }
 
 bool ChequeAccount::depositMoney(Money amount) {
 	// TODO implement
 	bool valid = amountValid(amount);
-	if (amount.getDollars() <= limit.getDollars()) {
+	if (amount.asCents() <= limit.asCents()) {
 		if (valid) {
 			this->Balance.add(amount);
 			return true;
 		}
 	}
+
 	return false;
 }
 
 Money* ChequeAccount::getTransactionFee() const {
 	// TODO implement
-	return &TransactionsFee;
+	return TPointer;
 }
 
 ChequeAccount::~ChequeAccount() {

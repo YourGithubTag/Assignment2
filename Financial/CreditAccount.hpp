@@ -6,6 +6,7 @@
 class CreditAccount : public Account {
 //TODO Implement members as needed
 private:
+	static Money limit;
 	CreditAccount& operator=(const CreditAccount &other);
     CreditAccount(const CreditAccount &other);
 public:
