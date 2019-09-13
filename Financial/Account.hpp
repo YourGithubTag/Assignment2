@@ -16,7 +16,7 @@ public:
 	virtual bool withdrawMoney(Money amount) = 0;
 	virtual bool depositMoney(Money amount) = 0;
 	virtual bool amountValid(Money amount, bool isWithdraw) = 0;
-	bool aboveZero(Money amount);
+	static bool aboveZero(Money amount);
 	int getCustomerID() const;
 	int getAccountID() const;
 	Money getBalance() const;

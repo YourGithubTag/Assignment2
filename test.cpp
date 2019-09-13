@@ -7,7 +7,7 @@
 
 // flags to enable tests for the later parts of the assignment
 #define ENABLE_T2_TESTS
-//#define ENABLE_T3_TESTS
+#define ENABLE_T3_TESTS
 //#define ENABLE_T4_TESTS
 
 // include headers for classes being tested
@@ -637,6 +637,7 @@ TestResult testTransaction() {
 
 	ASSERT(transaction->getFromAccount()->getAccountID() == billieCredit->getAccountID());
 	ASSERT(transaction->getToAccount()->getAccountID() == jamesCheque->getAccountID());
+	cout<< transaction->getAmount().getDollars() <<endl;
 	ASSERT(transaction->getAmount().asCents() == 40000);
 	ASSERT(transaction->getState() == PENDING);
 
@@ -672,6 +673,7 @@ TestResult testTransactionNegativeAmount() {
 
 	ASSERT(transaction->getFromAccount()->getAccountID() == billieCredit->getAccountID());
 	ASSERT(transaction->getToAccount()->getAccountID() == jamesCheque->getAccountID());
+	cout << transaction->getAmount().asCents() << endl;
 	ASSERT(transaction->getAmount().asCents() == 0);
 	ASSERT(transaction->getState() == PENDING);
 

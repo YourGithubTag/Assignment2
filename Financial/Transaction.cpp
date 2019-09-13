@@ -7,21 +7,30 @@ Transaction::Transaction(Account* fromAccount, Account* toAccount, Money amount)
 	//TODO Implement
 	this->TransID = Transaction::NextTransactionID++;
 	this->state = PENDING;
-	this->TransAmount = amount;
 	this->FromAccount = fromAccount;
 	this->ToAccount = toAccount;
+
+	if (Account::aboveZero(amount)) {
+		this->TransAmount = amount;
+	}
+	else {
+		this->TransAmount = Money(0,0);
+	}
+
 }
 
 bool Transaction::performTransaction(){
 	//TODO Implement
-
-	if (FromAccount->aboveZero(TransAmount)){
-		if (FromAccount->amountValid(TransAmount) && ToAccount->amountValid(TransAmount) ){
-				FromAccount->withdrawMoney(TransAmount);
-				ToAccount->depositMoney(TransAmount);
+	if ((FromAccount->amountValid(TransAmount, true)) && (ToAccount->amountValid(TransAmount,false)) ) {
+		FromAccount->withdrawMoney(TransAmount);
+		ToAccount->depositMoney(TransAmount);
+		this->state = COMPLETED;
+		return true;
 	}
 
-	return false;
+	else {
+		this->state = FAILED;
+		return false;
 	}
 }
 
@@ -32,7 +41,7 @@ TransactionState Transaction::getState() const {
 
 Money Transaction::getAmount() const {
 	//TODO Implement
-	return Money(-1,-1);
+	return this->TransAmount;
 }
 
 Account* Transaction::getToAccount() const {
