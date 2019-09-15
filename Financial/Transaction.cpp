@@ -24,7 +24,9 @@ bool Transaction::validTransaction() const{
 	if ((FromAccount->amountValid(TransAmount, true)) && (ToAccount->amountValid(TransAmount,false)) ) {
 		return true;
 	}
-	else { return false; }
+	else {
+		return false;
+	}
 
 }
 
@@ -36,7 +38,6 @@ bool Transaction::performTransaction(){
 		this->state = COMPLETED;
 		return true;
 	}
-
 	else {
 		this->state = FAILED;
 		return false;

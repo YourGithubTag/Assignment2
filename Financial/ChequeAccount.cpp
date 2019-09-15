@@ -12,8 +12,8 @@ ChequeAccount::ChequeAccount(const int customerID) : Account(customerID) {
 
 bool ChequeAccount::withdrawMoney(Money amount) {
 	// TODO implement
-	amount.add(TransactionsFee);
-	if ( amountValid(amount,true)) {
+	if (amountValid(amount,true) ) {
+		amount.add(TransactionsFee);
 		this->Balance.subtract(amount);
 		this->TransactionsFee.add(Money(1,0));
 		return true;
@@ -47,6 +47,7 @@ bool ChequeAccount::amountValid(Money amount, bool isWithdraw) {
 			}
 
 			else if (isWithdraw){
+				amount.add(TransactionsFee);
 				if (this->Balance.asCents() >= amount.asCents()) {
 					return true;
 				}
