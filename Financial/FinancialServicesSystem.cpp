@@ -4,6 +4,9 @@
 
 FinancialServicesSystem::FinancialServicesSystem() {
 	// TODO implement
+		std::vector<Account*> accounts;
+		std::vector<Customer*> customers;
+		std::vector<Transaction*> transactions;
 }
 
 std::string FinancialServicesSystem::author(){
@@ -54,8 +57,11 @@ bool FinancialServicesSystem::addTransaction(Transaction* transaction) {
 }
 
 std::vector<Transaction*>  FinancialServicesSystem::transactionSort(std::vector<Transaction*> toSort) {
-
-	for (int i =0; i <toSort.size() -1; i++) {
+	std::vector<Transaction*>  v;
+	if (v == toSort) {
+		return v;
+	}
+	for (int i =0; i <toSort.size(); i++) {
 		for (int j =0; j < toSort.size()-i-1; j++) {
 			if (toSort[j]->getID() > toSort[j+1]->getID()) {
 				Transaction* temp = toSort[j+1];
@@ -64,6 +70,7 @@ std::vector<Transaction*>  FinancialServicesSystem::transactionSort(std::vector<
 			}
 		}
 	}
+
 	return toSort;
 }
 
@@ -176,6 +183,7 @@ std::vector<Transaction*> FinancialServicesSystem::getTransactions(TransactionSt
 					}
 				}
 	return v;
+
 }
 
 FinancialServicesSystem::~FinancialServicesSystem() {
