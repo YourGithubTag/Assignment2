@@ -30,6 +30,18 @@ bool Account::aboveZero(Money amount) {
 		return false;
 	}
 }
+
+Money Account::getAbsoluteBalance() const {
+	int invert = 0;
+	if (this->Balance.asCents() < 0) {
+		invert = -1 * (this->Balance.asCents());
+		return Money(0,invert);
+	}
+	else {
+		return this->Balance;
+	}
+
+}
 Account::~Account() {
 	// TODO implement
 }

@@ -20,6 +20,7 @@ public:
 	int getCustomerID() const;
 	int getAccountID() const;
 	Money getBalance() const;
+	Money getAbsoluteBalance() const;
 	virtual ~Account();
 };
 

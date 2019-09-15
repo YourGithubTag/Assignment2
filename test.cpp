@@ -8,7 +8,7 @@
 // flags to enable tests for the later parts of the assignment
 #define ENABLE_T2_TESTS
 #define ENABLE_T3_TESTS
-//#define ENABLE_T4_TESTS
+#define ENABLE_T4_TESTS
 
 // include headers for classes being tested
 #include "Financial/Money.hpp"
@@ -870,7 +870,6 @@ TestResult testSuccessfulAddCustomerFSS() {
 	ASSERT(fss->addCustomer(billie) == true);
 
 	std::vector<Customer*> customers = fss->getCustomers();
-
 	ASSERT(customers.size() == 1);
 	ASSERT(customers[0]->getID() == billie->getID());
 
@@ -1161,18 +1160,26 @@ TestResult testSuccessfulOrderedTransactionsFSS() {
 
 	Customer* billie = new Customer("Billie");
 	Customer* james = new Customer("James");
+
+	Customer* shan = new Customer("Shan");
+
 	Account* billieCredit= new CreditAccount(billie->getID());
 	Account* jamesCheque = new ChequeAccount(james->getID());
 
+
 	billieCredit->depositMoney(Money(500,0));
 	jamesCheque->depositMoney(Money(300,0));
+
 	Transaction* transaction1 = new Transaction(billieCredit, jamesCheque, Money(400,0));
+
 	Transaction* transaction2 = new Transaction(jamesCheque, billieCredit, Money(600,0));
+
 
 	ASSERT(fss->addCustomer(billie) == true);
 	ASSERT(fss->addAccount(billieCredit) == true);
 	ASSERT(fss->addCustomer(james) == true);
 	ASSERT(fss->addAccount(jamesCheque) == true);
+
 
 	//Transactions added in reverse order to required execution
 	ASSERT(fss->addTransaction(transaction2) == true);
@@ -1180,6 +1187,8 @@ TestResult testSuccessfulOrderedTransactionsFSS() {
 
 	//transaction1 should be performed first for both to succeed.
 	std::vector<Transaction*> transactionsCompleted = fss->performPendingTransactions();
+
+	cout << transactionsCompleted.size() <<endl;
 
 	ASSERT(transactionsCompleted.size() == 2);
 	ASSERT(billieCredit->getBalance().asCents() == 70000);

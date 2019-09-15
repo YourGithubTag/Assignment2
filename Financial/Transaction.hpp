@@ -25,6 +25,7 @@ private:
 public:
 	Transaction(Account* fromAccount, Account* toAccount, Money amount);
 	bool performTransaction();
+	bool validTransaction() const;
 	TransactionState getState() const;
 	Money getAmount() const;
 	Account* getFromAccount() const;

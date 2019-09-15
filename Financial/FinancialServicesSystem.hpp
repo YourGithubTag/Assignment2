@@ -13,7 +13,10 @@
 class FinancialServicesSystem {
 //TODO Add members as needed
 private:
-	
+	std::vector<Account*> accounts;
+	std::vector<Customer*> customers;
+	std::vector<Transaction*> transactions;
+
 public:
 	FinancialServicesSystem();
 	static std::string author();
@@ -27,11 +30,12 @@ public:
 	bool verifyCustomer(int customerID) const;
 	bool verifyAccount(int accountID) const;
 	bool verifyTransaction(int transactionID) const;
-
 	std::vector<Account*> getAccounts() const;
 	std::vector<Customer*> getCustomers() const;
 	std::vector<Transaction*> getTransactions() const;
 	std::vector<Transaction*> getTransactions(TransactionState state) const;
+	std::vector<Transaction*> transactionSort(std::vector<Transaction*> toSort);
+
 
 	virtual ~FinancialServicesSystem();
 };

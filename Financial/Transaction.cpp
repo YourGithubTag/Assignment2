@@ -19,9 +19,18 @@ Transaction::Transaction(Account* fromAccount, Account* toAccount, Money amount)
 
 }
 
+bool Transaction::validTransaction() const{
+
+	if ((FromAccount->amountValid(TransAmount, true)) && (ToAccount->amountValid(TransAmount,false)) ) {
+		return true;
+	}
+	else { return false; }
+
+}
+
 bool Transaction::performTransaction(){
 	//TODO Implement
-	if ((FromAccount->amountValid(TransAmount, true)) && (ToAccount->amountValid(TransAmount,false)) ) {
+	if (validTransaction() ) {
 		FromAccount->withdrawMoney(TransAmount);
 		ToAccount->depositMoney(TransAmount);
 		this->state = COMPLETED;
