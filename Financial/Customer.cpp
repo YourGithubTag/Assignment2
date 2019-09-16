@@ -3,22 +3,22 @@
 
 int Customer::Gid = 0;
 Customer::Customer(const std::string &name) {
-	// TODO implement
+	//constructing the customer object
 	this->Name = name;
-	this->id = Customer::Gid++;
+	this->id = Customer::Gid++; //setting the customerID
 }
 
 std::string Customer::getName() const {
-	// TODO implement
+	//returning customer name
 	return this->Name;
 }
 
 int Customer::getID() const {
-	// TODO implement
+	//returning customer ID
 	return this->id;
 }
 
 Customer::~Customer() {
-	// TODO implement
+
 }
 

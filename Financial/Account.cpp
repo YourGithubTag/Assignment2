@@ -1,28 +1,28 @@
 #include "Account.hpp"
 int Account::NextAccountID = 0;
 Account::Account(const int customerID) {
-	// TODO implement
-	this->CustomerID = customerID;
-	this->AccountID = Account::NextAccountID++;
+	// Construting the Account object
+	this->CustomerID = customerID; //setting the customersID
+	this->AccountID = Account::NextAccountID++; //setting the AccountID from the nextID, then iterating NextID
 }
 
 int Account::getAccountID() const {
-	// TODO implement
+	// Getting AccountID
 	return this->AccountID;
 }
 
 int Account::getCustomerID() const {
-	// TODO implement
+	// Getting CustomerID
 	return this->CustomerID;
 }
 
 Money Account::getBalance() const {
-	// TODO implement
-	//Money m(-1,-1);
+	// Getting Balance
 	return this->Balance;
 }
 
 bool Account::aboveZero(Money amount) {
+	//Function which checks if the amount parameter is above zero or not.
 	if (amount.asCents() >= 0) {
 		return true;
 	}
@@ -32,9 +32,10 @@ bool Account::aboveZero(Money amount) {
 }
 
 Money Account::getAbsoluteBalance() const {
+	//function which returns the absolute balance, converting negative to positive.
 	int invert = 0;
 	if (this->Balance.asCents() < 0) {
-		invert = -1 * (this->Balance.asCents());
+		invert = -1 * (this->Balance.asCents()); //converting negative to positive
 		return Money(0,invert);
 	}
 	else {
@@ -43,6 +44,6 @@ Money Account::getAbsoluteBalance() const {
 
 }
 Account::~Account() {
-	// TODO implement
+
 }
 
